@@ -96,7 +96,7 @@ flowchart LR
 
     User -->|use IEEE.numeric_std.all| Compiler
     Compiler --> Resolver
-    Resolver -->|topo-ordered LibrarySource[]| Orch
+    Resolver -->|"topo-ordered LibrarySource[]"| Orch
     Orch -->|cache hit| Cache
     Orch -->|cache hit| Blob
     Orch -->|cache miss| Builder
