@@ -92,7 +92,7 @@ flowchart LR
     Orch[BuildOrchestrator<br/>linear / parallel<br/>policy enforcement]
     Cache[in-memory dict]
     Blob[/IBlobStore<br/>host-supplied/]
-    Out[(CompiledLibrary[])]
+    Out[("CompiledLibrary[]")]
 
     User -->|use IEEE.numeric_std.all| Compiler
     Compiler --> Resolver
@@ -273,8 +273,8 @@ flowchart TB
     Parser[Parser tokenises + structures]
     OpInner["Operation.ParseFunctionCall<br/>(unsigned)"]
     OpOuter["Operation.ParseFunctionCall<br/>(to_integer)"]
-    DFInner[DeferredFunction unsigned<br/>Args=[addr_var]]
-    DFOuter[DeferredFunction to_integer<br/>Args=[DFInner]]
+    DFInner["DeferredFunction unsigned<br/>Args=[addr_var]"]
+    DFOuter["DeferredFunction to_integer<br/>Args=[DFInner]"]
     Synth[ConcurrentAssignSynthesizer<br/>SynthesizeInto]
     Resolve[ResolveDeferredArgs<br/>recursive]
     Lookup[IEEEPrimitives.TryLower]
