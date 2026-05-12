@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AndroidUseAndroidX>true</AndroidUseAndroidX>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateRuntimeConfigDevFile>false</GenerateRuntimeConfigDevFile>
+    <NoWarn>$(NoWarn);CS1587;CS1591;CS1570;CS1573;CS1574;CS1998;CS8602;CS8604;CS8625;CS8892;CS0219;CS0618;CS4014</NoWarn>
+    <!-- Library — never an Exe; nothing to launch. Workstation GC matches
+         the rest of the simulator. -->
+    <OutputType>Library</OutputType>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+    <UseAndroidX>true</UseAndroidX>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Parser/Parser.csproj" />
+  </ItemGroup>
+
+  <!-- Bundle the IEEE stub VHD files as embedded resources so the lib never
+       depends on a particular on-disk layout. Hosts that prefer file streams
+       can still pass an OpenLibrarySource callback that reads from disk. -->
+  <ItemGroup>
+    <EmbeddedResource Include="Builtins/IEEE/*.vhd" />
+  </ItemGroup>
+
+</Project>
