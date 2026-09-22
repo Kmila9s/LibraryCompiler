@@ -7,7 +7,4 @@ build-test:
     stage: test
     image: mcr.microsoft.com/dotnet/sdk:9.0
     script: 
-        - dotnet workload install maui-android
-        - dotnet clean
-        - dotnet restore
-        - dotnet run -f net9.0 ../Parser/Parser.csproj
+        - dotnet build LibraryCompiler.csproj -c Release -f net9.0 -p:TargetFrameworks=net9.0
