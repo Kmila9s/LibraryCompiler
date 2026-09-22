@@ -1,0 +1,13 @@
+variables:
+    GIT_DEPTH: "20"
+before_script:
+    - rm -rf ../Parser
+    - git clone --depth 20 "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_NAMESPACE}/Parser.git" ../Parser
+build-test:
+    stage: test
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    script: 
+        - dotnet clean
+        - dotnet restore
+        - dotnet workload install maui-android
+        - dotnet run -f net9.0 ../Parser/Parser.csproj
