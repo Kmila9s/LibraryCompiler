@@ -414,7 +414,7 @@ flowchart TD
     H --> I[Lookup LibrarySource]
     I --> J{Existe?}
     J -->|No| K[Diagnostico:<br/>libreria no resuelta]
-    J -->|Si| L[Por cada dep en source.Dependencies]
+    J -->|Si| L[Por cada dep en source.DependsOn]
     L --> E
     J -->|Si| M[Anadir source a orden post-DFS]
     M --> N{Mas dependencias?}
