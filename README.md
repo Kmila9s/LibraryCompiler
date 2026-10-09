@@ -3,6 +3,8 @@
 Library compilation as a sibling module of Parser / Interpreter / Debugger / TimeMachine. Owns the IEEE builtins, exposes a portable host-driven API, and produces compiled artifacts that the rest of the simulator (in particular `Interpreter.Synthesis.IEEEPrimitives`) consumes to lower IEEE function calls into real netlist primitives.
 
 > **Status:** v1.19 (2 May 2026). Ships #22–#26 (extraction + policy + project + parallel + persistence) plus the IEEE primitive lowering pipeline added in #27–#29.
+>
+> **Docs sync 2026-09-24** — still current at the module level; no functional change since v1.19. The 2026-09-23 feature batch (v1.27.0) is **app-only** (see `App/Kmila/README.md` §19).
 
 ---
 
