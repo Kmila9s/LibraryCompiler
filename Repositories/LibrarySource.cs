@@ -17,7 +17,7 @@ namespace LibraryCompiler.Repositories;
 /// </param>
 /// <param name="SourceKey">
 /// Opaque key the compiler hands back to the host's
-/// <see cref="LibraryCompilerOptions.OpenLibrarySource"/> callback when it
+/// <see cref="LibraryCompiler.Services.LibraryCompilerOptions.OpenLibrarySource"/> callback when it
 /// wants the source bytes. The host decides whether this is a relative
 /// path, an embedded-resource name, an absolute file path, or anything
 /// else — the compiler treats it as a black box string.

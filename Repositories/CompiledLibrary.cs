@@ -65,4 +65,12 @@ public sealed record LibraryDiagnostic(
     string Message);
 
 /// <summary>Severity buckets matching the editor's marker levels.</summary>
-public enum LibraryDiagnosticSeverity { Info, Warning, Error }
+public enum LibraryDiagnosticSeverity
+{
+    /// <summary>Informational diagnostic.</summary>
+    Info,
+    /// <summary>Warning diagnostic.</summary>
+    Warning,
+    /// <summary>Error diagnostic.</summary>
+    Error
+}
