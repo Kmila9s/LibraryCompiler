@@ -1,10 +1,13 @@
 include:
     - project: 'kmila-9s/ci-templates'
       file: '/auto-merge.yml'
+    - project: 'kmila-9s/ci-templates'
+      file: '/downstream-fanout.yml'
 
 stages:
     - test
     - merge
+    - fanout
 
 variables:
     GIT_DEPTH: "20"
