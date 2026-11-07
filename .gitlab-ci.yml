@@ -16,6 +16,6 @@ before_script:
     - git clone --depth 20 "http://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}:8083/${CI_PROJECT_NAMESPACE}/Parser.git" ../Parser
 build-test:
     stage: test
-    image: mcr.microsoft.com/dotnet/sdk:9.0
-    script: 
-        - dotnet build LibraryCompiler.csproj -c Release -f net9.0 -p:TargetFrameworks=net9.0
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    script:
+        - dotnet build LibraryCompiler.csproj -c Release -f net10.0 -p:TargetFrameworks=net10.0
