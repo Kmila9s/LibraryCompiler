@@ -28,9 +28,6 @@
     <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../Parser/Parser.csproj" />
-  </ItemGroup>
 
   <!-- Bundle the IEEE stub VHD files as embedded resources so the lib never
        depends on a particular on-disk layout. Hosts that prefer file streams
