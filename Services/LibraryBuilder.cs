@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using LibraryCompiler.Repositories;
+using Parser.Models;
 
 namespace LibraryCompiler.Services;
 
@@ -40,13 +41,6 @@ public sealed class LibraryBuilder
     private static readonly Regex TypeRe = new(
         @"(?im)^\s*(?:sub)?type\s+([a-z_][a-z0-9_]*)\s+is\b",
         RegexOptions.Compiled);
-    // Strip line-comments (`-- …\n`) and string literals before symbol
-    // extraction so the declarations we see are the ones the parser will
-    // see. Block comments aren't part of VHDL-2008 / earlier so no need
-    // to handle `/* … */`.
-    /// <summary>Regex used to strip VHDL line comments before symbol extraction.</summary>
-    private static readonly Regex LineCommentRe =
-        new(@"--[^\r\n]*", RegexOptions.Compiled);
 
     /// <summary>Host-supplied options bundle (source opener, cache, policy, additional sources).</summary>
     private readonly LibraryCompilerOptions _options;
@@ -91,9 +85,9 @@ public sealed class LibraryBuilder
         string hash = Sha256Hex(bytes);
 
         // Comments contain prose like "function" or "type" that would
-        // otherwise produce false-positive symbols. Strip them before
-        // running the declaration regexes.
-        string cleaned = LineCommentRe.Replace(text, string.Empty);
+        // otherwise produce false-positive symbols (VHDL ≤ 2008 has only
+        // line comments). String-aware, like the parser.
+        string cleaned = VhdlText.StripLineComments(text);
 
         // De-duplicate by (name, kind) so an overloaded function declared
         // multiple times (common in IEEE stubs — different argument types)
