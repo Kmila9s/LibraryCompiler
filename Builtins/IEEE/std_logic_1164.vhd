@@ -24,11 +24,15 @@ package std_logic_1164 is
     -- Multivalue scalar logic.
     type std_ulogic is ('U', 'X', '0', '1', 'Z', 'W', 'L', 'H', '-');
 
+    -- IEEE 1164 resolution function (the simulator applies its table,
+    -- Interpreter.Models.StdLogic.Resolve, to every resolved signal).
+    type std_ulogic_vector is array (natural range <>) of std_ulogic;
+    function resolved (s : std_ulogic_vector) return std_ulogic;
+
     -- Resolved scalar (default in user code).
-    subtype std_logic is std_ulogic;
+    subtype std_logic is resolved std_ulogic;
 
     -- Unconstrained vector forms (size determined at instantiation).
-    type std_ulogic_vector is array (natural range <>) of std_ulogic;
     type std_logic_vector  is array (natural range <>) of std_logic;
 
     -- ---- Logical operators (declarations; bodies = primitive cells) ----
